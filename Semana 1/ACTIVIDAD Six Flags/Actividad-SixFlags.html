@@ -4,9 +4,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Actividad_Six Flags</title>
 </head>
     <body>
-                
+        <h3>Maquetado elaborado por: López Morales Fernando Samuel</h3>
+        <hr/>
+        <h1>- Sistema de Boletos Six Flags -</h1>
+        <form action="./Dynamics/SistemaBoletos.php" method="POST" target="self">
+            <fieldset>
+                <legend><strong>Ingresa los datos    solicitados para adquirir tus boletos</strong></legend>
+                <label for="nombre">Nombre: </label>
+                <input type="text" id="nombre" name="Nombre" autofocus required>                
+
+                <label for="apellido1">Apellido paterno: </label>
+                <input type="text" id="apellido1" name="Apellido1" required>                
+
+                <label for="apellido2">Apellido Materno: </label>
+                <input type="text" id="apellido2" name="Apellido2" required>
+
+                <br/><br/>
+                <label for="edad">Edad: </label>
+                <input type="number" id="edad" name="Edad" required>
+                <br/><br/>
+
+                <label for="direccion">Dirección: </label>
+                <input type="text" id="direccion" name="Direccion" required>
+                <br/><br/>
+
+                <label for="numeroboletos">Número de Boletos: </label>
+                <input type="number" id="numeroboletos" name="NumeroBoletos" required>                
+                <br/><br/>
+
+                <label for="tipoboleto">Tipo de Boleto: </label>
+                <select name="TipoBoleto" id="tipoboleto">
+                    <option value="1">Boleto Normal</option>
+                    <option value="2">Flash Pass</option>
+                    <option value="3"></option>
+                    <option value="4"></option>
+                    <option value="5"></option>
+                </select>
+                <br/><br/>
+                <hr/>        
+
+                <button type="submit">Enviar</button>                
+                <button type="reset">Eliminar datos</button>
+
+
+
+            </fieldset>
+        </form>
+
+
     </body>
 </html>
