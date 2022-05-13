@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Vacaciones_Lopez Morales</title>
+    <link rel="icon" href="./Vacaciones.jpg" type="image/jpg">
+</head>
+<body>
+    <h3>Promo Hotel México</h3>
+    <hr/>
+    <h1>¡Bienvenida(o) a la página de "Promo Hotel México", parte del grupo "PE México".</h1>
+    <h2>Usted esta buscando hoteles de nuestro grupo para: <strong><u>Puerto Vallarta</u></strong></h2>
+    <h3>Estamos entusiasmados de poder atenderte y hacerte pasar una gran experiencia descansando despues de un gran día de vacaciones.</h3>
+    <p>
+        <img src="./PVallarta.jpg" alt="Imagen de Puerto Vallarta" width="500"><br/>
+        Como en todos los lugares donde nos encontramos, Promo Hotel es la mejor opción por los servicios y experiencias que se construyen dentro de el.<br/>
+        <em>En Puerto Vallarta, no encontraras un lugar mas relajante y bello para confiar tu descanso que en los hoteles </em>"<strong>Promo Hotel México</strong>"
+    </p>
+    <hr/>
+    <h2>¡Asegura tu experiencia!</h2>
+    <form method="POST" target="self"><!--action="./Cuestionario.php"-->
+        <fieldset>
+            <legend>Datos de reservación</legend>
+            Ingresa lo solicitado para poder proceder con el proceso de reservación:<br/><br/>
+            <label for="nombre">Nombre: </label>
+            <input type="text" id="nombre" name="N0mbre" required placeholder="Ingresa tu nombre">
+            
+            <label for="apellido1">Apellidos: </label>
+            <input type="text" id="apellido1" name="Apellido" required placeholder="Apellido Paterno">
+            <input type="text" id="apellido2" name="Apellido" required placeholder="Apellido Materno">
+            <br/><br/>
+
+            <label for="correo">Correo: </label>
+            <input type="email" id="correo" name="Corre0" required placeholder="Ingresa tu correo electrónico" size="25">
+            <br/><br/>
+
+            <label for="FechaRecep">Fecha de Recepción: </label>
+            <input type="date" id="FechaRecep" name="Fecha de Recepción" required>
+            <br/><br/>
+
+            <label for="telef">Número de Teléfono</label>
+            <input type="tel" id="telef" name="Teléfono" required placeholder="10 dígitos">
+            <br/><br/>
+
+            <label for="tipocama">Tipo de Cama: </label>
+            <select name="tipocama" id="tipocama">
+                <option value="1">Cama Individual</option>
+                <option value="2">Cama Doble</option>
+                <option value="3">Cama Queen size</option>
+                <option value="2">Cama King size</option>
+            </select>            
+            
+            <label for="lugpref">Lugar de preferencia en el hotel: </label>
+            <input list="lugpref" name="lugpref" size="50" required>
+            <datalist id="lugpref">                
+                <option value="Habitación cerca de la alberca"></option>
+                <option value="Habitación cerca de los restaurantes"></option>
+                <option value="Habitación cerca del estacionamiento"></option>
+                <option value="Habitación cerca del salón"></option>                
+            </datalist>
+            <br/><br/>
+
+            <label for="aspectosad">Aspectos adicionales: </label><br/>
+            <input type="radio" id="aspectosad"><label for="aspectosad">Con Balcón</label><br/>
+            <input type="radio" id="aspectosad2"><label for="aspectosad2">Con Bañera</label><br/>
+            <input type="radio" id="aspectosad3"><label for="aspectosad3">Con pijama incluida en la habitación</label><br/>
+
+            <br/><br/>
+            <label for="comentarios">Comentario o petición especial para su habitación: </label><br/>
+            <textarea name="Comentarios" id="comentarios" cols="30" rows="10" placeholder="Comentario"></textarea>
+
+            <br/><br/>
+
+            <button type="submit">Enviar</button>
+            <button type="reset">Eliminar datos</button>
+        </fieldset>                
+    </form>
+    <h5>Todos los derechos reservados </h5> 
+</body>
+</html>
