@@ -1,9 +1,60 @@
+/* =SETTINGS
+--------------------------------------------------------------------------------------------------*/
 @font-face {
     font-family: "Fuego";
     src: url(../fonts/charbb_reg.ttf);
 }
+@font-face {
+    font-family: "VECTOR";
+    src: url(../fonts/Newton\ Howard\ Font.ttf);
+}
+@font-face {
+    font-family: "Texto";
+    src: url(../fonts/BebasNeue-Regular.ttf);
+}
+@font-face {
+    font-family: "Titulos";
+    src: url(../fonts/Fresh\ Fruit.ttf);
+}
+/*TOOLS = funciones a nivel global, GENERIC = estilos de nivel global, ELEMENTS = etiquetas HTML?, OBJECT = clases, COMPONENTS = id?, UTILITIES = !important, ?*/
+/* =ELEMENTS
+--------------------------------------------------------------------------------------------------*/
 body{
-    background-color: #ffcfbf;
+    background-color: #ffcfbf;    
+}
+header{
+
+    color: gold;
+    font-family: "VECTOR", "Copperplate", sans-serif;
+    font-size: 350%;
+    text-align: center;
+    width: 100%;
+    height: 200px;
+
+    /*
+    margin-top: 0%;
+    margin-bottom: 0%;    */
+    /*position: relative;  */
+}
+hr{    
+    border: 3px dotted red;
+    margin-top: 0.5%;
+    margin-bottom: 0.5%;      
+}
+h1{
+    background-color: crimson;
+    z-index: 1;
+    box-sizing: border-box;
+    border: 5px dashed black;
+    /*border-radius: 0% 0% 0% 0%; */
+
+    
+    width: 99.5%;
+    height: 200px;
+    margin-top: 0%;
+    margin-bottom: 0%;
+
+    /*padding-bottom: 1%;*/
 }
 h2{
     font-family: "Fuego", "Lucida Handwriting", cursive;
@@ -13,22 +64,80 @@ h2{
     text-align: center;
     position: relative;
     margin-top: 0%;
-    margin-bottom: 1%;
+    margin-bottom: 0%;    
 }
-hr{
-    color: firebrick;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    
+p{
+    box-sizing: border-box;
+    margin: 24px 24px 24px 24px;
+    font-family: "Texto";
+    font-size: 150%;    
+    color: #4e4e4e;    
+    position: relative;    
 }
-
-#TITULO{
-    font-family: "Fuego", "Lucida Handwriting", cursive;
-    font-size: 750%;
-    background-color: #ff2700;
-    color: #ffd500;
-    text-align: center;
+ul, ol, h3, span, li{
+    font-size: 120%;
+}
+ul{
+    font-family: "Titulos";    
+}
+ol{
+    font-family: "Texto";    
+}
+strong{
+    color: crimson;
+}
+/*
+*/
+.FORMATO{
     position: relative;
+}
+/*
+*/
+#NOMBRE{
+    position: fixed;
+}
+#divPresentacion{
+    height: 500px;
+}
+#divFreson{
+    position: absolute;
+    width: 50%;
+    height: 500px;
+}
+#divTextointro{
+    width: 50%;    
+    background-color: #cbcbcb;
+    position: absolute;
+    top: 15%;
+    left: 45%;
+}
+#TITULO_FERSA{
+    font-family: "Fuego", "Copperplate", cursive;
+    font-size: 350%;
+    background-color:  #d8b400;   
+    color: black;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    left: 30%;
+
+    border-radius: 40% 40% 40% 40%;
+    padding: 1% 5% 1% 5%;
     margin-top: 0%;
     margin-bottom: 1%;
+}
+#FOTO_FRESON{
+    width: 300px;
+    position: absolute;
+    top: 15%;    
+    left: 15%;
+    border-radius: 40% 40% 40% 40%;
+    padding: 1% 5% 1% 5%;
+    margin-top: 0%;
+    margin-bottom: 1%;
+}
+
+#CRUSHES{
+    color: #ff0800;
+    background-color: #ffa600;
 }
