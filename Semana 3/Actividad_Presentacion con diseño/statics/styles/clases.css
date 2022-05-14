@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "Fuego";
+    src: url(../fonts/charbb_reg.ttf);
+}
+body{
+    background-color: #ffcfbf;
+}
+h2{
+    font-family: "Fuego", "Lucida Handwriting", cursive;
+    font-size: 300%;
+    background-color: #ff5100;
+    color: #ffcd00;
+    text-align: center;
+    position: relative;
+    margin-top: 0%;
+    margin-bottom: 1%;
+}
+hr{
+    color: firebrick;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    
+}
+
+#TITULO{
+    font-family: "Fuego", "Lucida Handwriting", cursive;
+    font-size: 750%;
+    background-color: #ff2700;
+    color: #ffd500;
+    text-align: center;
+    position: relative;
+    margin-top: 0%;
+    margin-bottom: 1%;
+}
