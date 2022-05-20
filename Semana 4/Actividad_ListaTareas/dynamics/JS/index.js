@@ -54,32 +54,28 @@ btn_añadir.addEventListener("click", (evento) => {
         if(select_titulo.value != 5)//Si es una tarea definida
         {
             
-            let permiteRegistro = true
+            let permiteRegistro = true, tituloConcordante = 0;
             for (let valor of lista.children)
             {            
-                console.log("JIJIJA: "+valor.children[6].textContent);
+                //console.log("JIJIJA: "+valor.children[6].textContent);
                 if(valor.children[6].textContent == tarea.value)
                 {
                     permiteRegistro = false;
-                }
-
+                    tituloConcordante = valor.firstChild.data;
+                }                
             }
-            if (permiteRegistro != false)
+            //console.log(tituloConcordante);
+            if (permiteRegistro != false || tituloConcordante != select_titulo.value)
             {
                 const nuevaDiv = document.createElement("div");
                 //nuevaDiv.setAttribute("id", "tareita");
                 nuevaDiv.className = "tareita";
                 nuevaDiv.innerHTML += select_titulo.value+"<br/>";
                 //nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button>"
-                nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button><button class='acabada'>Marcar como acabada</button><button class='eliminar'>Eliminar</button><br/>";
+                nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button><button class='acabada'>Marcar como Acabada</button><button class='eliminar'>Eliminar</button><br/>";
                 nuevaDiv.innerHTML += "<button class='abajo'>Abajo</button>"+"<span>"+tarea.value+"</span>";
                 nuevaDiv.innerHTML += "<hr/></div>";
-                lista.appendChild(nuevaDiv);
-    
-                //lista.innerHTML = lista.innerHTML+"<div id='tareita'>"+select_titulo.value+"<br/>";
-                //lista.innerHTML = lista.innerHTML+"<button class='arriba'>Arriba</button><button class='acabada'>Marcar como acabada</button><button class='eliminar'>Eliminar</button><br/>";
-                //lista.innerHTML = lista.innerHTML+"<button class='abajo'>Abajo</button>"+tarea.value;
-                //lista.innerHTML = lista.innerHTML+"<hr/></div>";                
+                lista.appendChild(nuevaDiv);                    
             }
         }        
         else                //Si no esta definita, se crea la tarea y la opcion nueva
@@ -89,58 +85,98 @@ btn_añadir.addEventListener("click", (evento) => {
             {
                 if(elemento.value != '' && elemento.value !=' ')
                 {
-                    let permiteRegistro = true
+                    let permiteRegistro = true, tituloConcordante = 0;
                     for (let valor of lista.children)
                     {            
-                        console.log("JIJIJA: "+valor.children[6].textContent);
+                        console.log("JIJIJA: "+valor.children[6].textContent);                        
                         if(valor.children[6].textContent == tarea.value)
                         {
                             permiteRegistro = false;
-                        }
-
+                            tituloConcordante = valor.firstChild.data;
+                        }                        
                     }
-                    if (permiteRegistro != false)
+                    console.log(permiteRegistro, tituloConcordante);
+                    if (permiteRegistro != false || tituloConcordante != elemento.value)
                     {
                         const nuevaDiv = document.createElement("div");
                         //nuevaDiv.setAttribute("id", "tareita");                    
                         nuevaDiv.className = "tareita";
                         nuevaDiv.innerHTML += elemento.value+"<br/>";
                         //nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button>"
-                        nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button><button class='acabada'>Marcar como acabada</button><button class='eliminar'>Eliminar</button><br/>";
+                        nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button><button class='acabada'>Marcar como Acabada</button><button class='eliminar'>Eliminar</button><br/>";
                         nuevaDiv.innerHTML += "<button class='abajo'>Abajo</button>"+"<span>"+tarea.value+"</span>";
                         nuevaDiv.innerHTML += "<hr/></div>";
-                        lista.appendChild(nuevaDiv);
-                        /*
-                        lista.innerHTML = lista.innerHTML+"<div id='tareita'>"+elemento.value+"<br/>";
-                        lista.innerHTML = lista.innerHTML+"<button class='arriba'>Arriba</button><button class='acabada'>Marcar como acabada</button><button class='eliminar'>Eliminar</button><br/>";
-                        lista.innerHTML = lista.innerHTML+"<button class='abajo'>Abajo</button>"+tarea.value;
-                        lista.innerHTML = lista.innerHTML+"<hr/></div>";
-        */                                        
+                        lista.appendChild(nuevaDiv);                              
                         
-                        const nuevaSeleccion = document.createElement("option");
-                        nuevaSeleccion.setAttribute("value", elemento.value);
-                        nuevaSeleccion.innerHTML = elemento.value;
-        
-                        console.log(nuevaSeleccion);
-        
-                        select_titulo.appendChild(nuevaSeleccion);
-                        select_titulo.appendChild(opt_otro);
-                    }
-                    
+                        let permiteRegistro = true, tituloConcordante = 0;
+                        for (let valor of select_titulo)
+                        {            
+                            console.log("CD"+valor.innerHTML);                        
+                            if(valor.innerHTML == elemento.value)
+                            {
+                                permiteRegistro = false;
+                                //tituloConcordante = valor.firstChild.data;
+                            }                                                    
+                        }
+                        if(permiteRegistro != false)
+                        {
+                            const nuevaSeleccion = document.createElement("option");
+                            nuevaSeleccion.setAttribute("value", elemento.value);
+                            nuevaSeleccion.innerHTML = elemento.value;
+            
+                            console.log(nuevaSeleccion);
+            
+                            select_titulo.appendChild(nuevaSeleccion);
+                            select_titulo.appendChild(opt_otro);
+                        }
+                    }                    
                 }
 
             }
             
         }        
-        console.log(lista);        
+        //console.log(lista);                
     }
 });
 lista.addEventListener("click", (evento) =>{    
-    console.log(evento.target.parentElement);        
-    /*
+    console.log(evento.target.parentElement);
     if(evento.target.className === 'eliminar'){
-        evento.target.parentElement.outerHTML = '';
-    } */           
+        //console.log("XDDDD");
+        console.log(evento.target.parentElement.parentElement);
+
+        evento.target.parentElement.parentElement.removeChild(evento.target.parentElement);
+        //evento.target.parentElement.outerHTML = '';
+        //console.log(lista);
+    }    
+});
+let tareasHechas = 0;
+const numTAcabadas = document.getElementById("numTAcabadas");
+lista.addEventListener("click", (evento) =>{    
+    //console.log(evento.target.parentElement);
+    if(evento.target.className === 'acabada'){
+        
+        let listaDenuevo = evento.target.parentElement;
+        if(listaDenuevo.dataset.hecha == "Marcada")
+        {
+            listaDenuevo.dataset.hecha = '';            
+            tareasHechas--; 
+            
+            console.log("Acabada PAPU");        
+            console.log(numTAcabadas);
+            console.log(evento.target)            
+            evento.target.innerHTML = 'Marcar como Acabada';
+        }
+        else{
+            listaDenuevo.dataset.hecha = 'Marcada';
+            tareasHechas++;           
+            evento.target.innerHTML = 'Marcar como NO acabada';
+        }
+        numTAcabadas.innerText = tareasHechas;
+        
+        //evento.target.parentElement.outerHTML = '';
+        //console.log(lista);
+    }    
+    console.log(lista);
 });
 
 
