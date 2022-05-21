@@ -150,10 +150,12 @@ lista.addEventListener("click", (evento) =>{
     if(evento.target.className === 'eliminar'){
         //console.log("XDDDD");
         console.log(evento.target.parentElement.parentElement);
-
         evento.target.parentElement.parentElement.removeChild(evento.target.parentElement);
         tareasTotales--;
         numTTotales.innerText = tareasTotales;
+        if(evento.target.parentElement.dataset.hecha == "Marcada")
+            tareasHechas--;
+        numTAcabadas.innerText = tareasHechas;
         //evento.target.parentElement.outerHTML = '';
         //console.log(lista);
     }    
