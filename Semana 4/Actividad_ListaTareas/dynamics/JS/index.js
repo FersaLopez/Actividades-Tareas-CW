@@ -10,6 +10,10 @@ const btn_añadir = document.getElementById("añadir");
 //const main = document.getElementsByTagName("main");
 
 const lista = document.getElementById("lista");//DIV
+
+const numTAcabadas = document.getElementById("numTAcabadas");
+const wordsTA = document.getElementById("wordsTA");
+const numTTotales = document.getElementById("numTTotales");
 //console.log(main.innerText);//Imprime en consola solo el texto como tal (las etiqeutas son interpretadas pero no se imprimen)
 //console.log(main.innerHTML);//Imprime en consola toda la estructura HTML, (como esta escrita en nuestro HTML)
 
@@ -21,20 +25,16 @@ console.log(tarea);
 console.log(btn_añadir);
 console.log(lista);
 
-
+let tareasHechas = 0, tareasTotales = 0;
 select_titulo.addEventListener("change", () =>{
     if(select_titulo.value == 5)//habilitar el espacio par aingresar una nueva tarea
     {
-        console.log("XDDD");
-        
+        console.log("XDDD");        
         //titulo.outerHTML = titulo.outerHTML+"<input type='text' name='titulo' id='titulo'><br/><br/>"
         let elemento = document.createElement("input");
         elemento.setAttribute("id", "otraTarea");        
-        selector.appendChild(elemento);
-        
-        console.log(elemento);
-                
-        //main.insertBefore()
+        selector.appendChild(elemento);        
+        console.log(elemento);                        
     }
     else{        //si se elige otro que no es otro, se quita el input
         let elemento = document.getElementById("otraTarea");
@@ -75,7 +75,9 @@ btn_añadir.addEventListener("click", (evento) => {
                 nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button><button class='acabada'>Marcar como Acabada</button><button class='eliminar'>Eliminar</button><br/>";
                 nuevaDiv.innerHTML += "<button class='abajo'>Abajo</button>"+"<span>"+tarea.value+"</span>";
                 nuevaDiv.innerHTML += "<hr/></div>";
-                lista.appendChild(nuevaDiv);                    
+                lista.appendChild(nuevaDiv);    
+                tareasTotales++;  
+                                   
             }
         }        
         else                //Si no esta definita, se crea la tarea y la opcion nueva
@@ -106,7 +108,8 @@ btn_añadir.addEventListener("click", (evento) => {
                         nuevaDiv.innerHTML += "<button class='arriba'>Arriba</button><button class='acabada'>Marcar como Acabada</button><button class='eliminar'>Eliminar</button><br/>";
                         nuevaDiv.innerHTML += "<button class='abajo'>Abajo</button>"+"<span>"+tarea.value+"</span>";
                         nuevaDiv.innerHTML += "<hr/></div>";
-                        lista.appendChild(nuevaDiv);                              
+                        lista.appendChild(nuevaDiv);       
+                        tareasTotales++;                                            
                         
                         let permiteRegistro = true, tituloConcordante = 0;
                         for (let valor of select_titulo)
@@ -131,12 +134,16 @@ btn_añadir.addEventListener("click", (evento) => {
                         }
                     }                    
                 }
-
-            }
-            
-        }        
-        //console.log(lista);                
+            }            
+        }                              
+        numTTotales.innerText = tareasTotales;
+        numTAcabadas.innerText = tareasHechas;
+        if(tareasHechas > 1 || tareasHechas == 0)        
+            wordsTA.innerText = " tareas acabadas de ";        
+        else        
+            wordsTA.innerText = " tarea acabada de ";
     }
+    
 });
 lista.addEventListener("click", (evento) =>{    
     console.log(evento.target.parentElement);
@@ -145,14 +152,11 @@ lista.addEventListener("click", (evento) =>{
         console.log(evento.target.parentElement.parentElement);
 
         evento.target.parentElement.parentElement.removeChild(evento.target.parentElement);
+        tareasTotales--;
+        numTTotales.innerText = tareasTotales;
         //evento.target.parentElement.outerHTML = '';
         //console.log(lista);
     }    
-});
-let tareasHechas = 0;
-const numTAcabadas = document.getElementById("numTAcabadas");
-lista.addEventListener("click", (evento) =>{    
-    //console.log(evento.target.parentElement);
     if(evento.target.className === 'acabada'){
         
         let listaDenuevo = evento.target.parentElement;
@@ -170,15 +174,61 @@ lista.addEventListener("click", (evento) =>{
             listaDenuevo.dataset.hecha = 'Marcada';
             tareasHechas++;           
             evento.target.innerHTML = 'Marcar como NO acabada';
-        }
+        }        
         numTAcabadas.innerText = tareasHechas;
+        if(tareasHechas > 1 || tareasHechas == 0)         
+            wordsTA.innerText = " tareas acabadas de ";        
+        else        
+            wordsTA.innerText = " tarea acabada de ";
         
         //evento.target.parentElement.outerHTML = '';
         //console.log(lista);
-    }    
-    console.log(lista);
+    }   
+    if(evento.target.className == "arriba") 
+    {
+        let listaDenuevo = evento.target.parentElement.parentElement, contadorPosicionHijo = 0;
+        console.log("XDDD")
+        console.log(listaDenuevo);
+        while(listaDenuevo.children[contadorPosicionHijo] != evento.target.parentElement)
+        {
+            console.log("XD");
+            contadorPosicionHijo++;
+        } 
+        if(evento.target.parentElement != listaDenuevo.children[0])
+        {
+            let indiceAnterior = (contadorPosicionHijo-1), objetoIntermedio;
+            objetoIntermedio = listaDenuevo.children[indiceAnterior].outerHTML;
+            listaDenuevo.children[indiceAnterior].outerHTML = listaDenuevo.children[contadorPosicionHijo].outerHTML;
+            listaDenuevo.children[contadorPosicionHijo].outerHTML = objetoIntermedio;
+            console.log("SII PAPUUIABSD");
+            console.log("POSICION" + contadorPosicionHijo);
+            console.log(objetoIntermedio);
+        }
+        console.log(lista);        
+    }
+    if(evento.target.className == "abajo") 
+    {
+        let listaDenuevo = evento.target.parentElement.parentElement, contadorPosicionHijo = 0;
+        console.log("XDDD")
+        console.log(listaDenuevo);
+        while(listaDenuevo.children[contadorPosicionHijo] != evento.target.parentElement)
+        {
+            console.log("XD");
+            contadorPosicionHijo++;
+        } 
+        if(evento.target.parentElement != listaDenuevo.lastChild)
+        {
+            console.log("OMGGGquepororororoor");
+            let indicePosterior = (contadorPosicionHijo+1), objetoIntermedio;
+            objetoIntermedio = listaDenuevo.children[indicePosterior].outerHTML;
+            listaDenuevo.children[indicePosterior].outerHTML = listaDenuevo.children[contadorPosicionHijo].outerHTML;
+            listaDenuevo.children[contadorPosicionHijo].outerHTML = objetoIntermedio;
+            console.log("SII PAPUUIABSD");
+            console.log("POSICION" + contadorPosicionHijo);
+            console.log(objetoIntermedio);
+        }
+        console.log(lista);        
+    }          
 });
-
-
 
 console.log(main);//Imprime en consola el objeto "Main"
