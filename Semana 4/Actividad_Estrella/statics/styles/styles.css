@@ -1,0 +1,41 @@
+h3{
+    font-family: 'Courier New', Courier, monospace;
+}
+h5{
+    color: aliceblue;
+}
+header{
+    background-color: rgb(111, 188, 255);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: xx-large ;
+    padding: 20px;    
+    border-radius: 5em;
+    color: black;
+    flex: content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+body{    
+    background-color: rgb(73, 0, 209);
+}
+#inputs{
+    font-size: 1.5em;
+    
+    display: flex;
+    padding: 2em;
+    border-radius: 3em;
+    background-color: gainsboro;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+#star{        
+    display: flex;    
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+}
+
