@@ -46,6 +46,7 @@ function iniciarTempoProcesado(hora, minutos, segundos)
         if(allSeconds == 1)
         {
             btn_iniciar.style = "display: blocked";
+            tiempoActivado = 0;
             alarma.volume = 0.1;
             alarma.play();
             reiniciarValores();                        
@@ -96,7 +97,7 @@ function iniciarTempoProcesado(hora, minutos, segundos)
             div_tempo.children[0].children[1].textContent = ponerCeros(minutos);
             div_tempo.children[0].children[2].textContent = ponerCeros(segundos);        
         }
-    }, 10);
+    }, 1000);
 }
 
 btn_detener.addEventListener("click", ()=>{
@@ -149,7 +150,7 @@ div_inputs.addEventListener("keyup", (evento)=>{
 
 btn_aceptar.addEventListener("click", ()=>{
     
-    if(tiempoActivado != 1)
+    if(tiempoActivado == 0)
     {
         if((in_horas.value >= 0) || in_horas.value == "")
         {
