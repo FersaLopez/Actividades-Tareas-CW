@@ -1,0 +1,12 @@
+body{    
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    align-content: center;    
+}
+
+#contenedor{
+    margin: 16em;
+}
