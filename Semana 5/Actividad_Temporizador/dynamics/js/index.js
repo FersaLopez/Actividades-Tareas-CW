@@ -8,7 +8,14 @@ const btn_aceptar = document.getElementById("aceptar_tiempo");
 const btn_iniciar = document.getElementById("btn_iniciar");
 const btn_detener = document.getElementById("btn_detener");
 
+const alarma = new Audio("./statics/media/alarma.mp3");
+let horas = 0, minutos = 0, segundos = 0;
 
+function reiniciarValores(){
+    horas = 0;
+    minutos = 0;
+    segundos = 0;
+}
 function ponerCeros(tiempo)
 {
     let stringTiempo;   
@@ -22,31 +29,32 @@ function ponerCeros(tiempo)
     return stringTiempo;
 }
 
-let pararTempo = 0;
+let pararTempo = 0, tiempoActivado = 0;
 function iniciarTempoProcesado(hora, minutos, segundos)
 {
     let allSeconds = 0;
     allSeconds += parseInt(hora * 3600);
     allSeconds += parseInt(minutos * 60);
     allSeconds += parseInt(segundos);   
-    
-    let hour = hora;
-    let min = minutos;
-    let sec = segundos
 
+    tiempoActivado = 1;
     console.log(allSeconds);      
     btn_iniciar.style = "display: none"    
-
-
 
     let temporizador = setInterval(()=>{
         
         if(allSeconds == 1)
-            btn_iniciar.style = "display: blocked"       
+        {
+            btn_iniciar.style = "display: blocked";
+            alarma.volume = 0.1;
+            alarma.play();
+            reiniciarValores();                        
+        }
+
         if(allSeconds == 0)
         {
             clearInterval(temporizador);      
-            console.log(hora, minutos, segundos)      
+            //console.log(hora, minutos, segundos)      
         }
         else
         {
@@ -88,12 +96,8 @@ function iniciarTempoProcesado(hora, minutos, segundos)
             div_tempo.children[0].children[1].textContent = ponerCeros(minutos);
             div_tempo.children[0].children[2].textContent = ponerCeros(segundos);        
         }
-    }, 1000);
-
-
+    }, 10);
 }
-
-let horas = 0, minutos = 0, segundos = 0;
 
 btn_detener.addEventListener("click", ()=>{
     if(pararTempo == 0)
@@ -143,40 +147,42 @@ div_inputs.addEventListener("keyup", (evento)=>{
     //console.log(evento.target);
 });
 
-
-
 btn_aceptar.addEventListener("click", ()=>{
     
-    if((in_horas.value >= 0) || in_horas.value == "")
+    if(tiempoActivado != 1)
     {
-        if(in_horas.value != "")     
+        if((in_horas.value >= 0) || in_horas.value == "")
         {
-            if(in_horas.value > 59)
-                horas = 59;  
-            else                                     
-                horas = in_horas.value;
+            if(in_horas.value != "")     
+            {
+                if(in_horas.value > 59)
+                    horas = 59;  
+                else                                     
+                    horas = in_horas.value;
+    
+            }       
+            div_tempo.children[0].children[0].textContent = ponerCeros(horas);
+        }        
+        if((in_minutos.value >= 0) || in_minutos.value == "")
+        {                          
+            if(in_minutos.value != "")            
+                if(in_minutos.value > 59)
+                    minutos = 59;  
+                else                                     
+                    minutos = in_minutos.value;           
+            div_tempo.children[0].children[1].textContent = ponerCeros(minutos);        
+        }
+        if((in_segundos.value >= 0) || in_segundos.value == "")
+        {        
+            if(in_segundos.value != "")            
+                if(in_segundos.value > 59)
+                    segundos = 59;  
+                else                                     
+                    segundos = in_segundos.value;
+            div_tempo.children[0].children[2].textContent = ponerCeros(segundos);        
+        }    
 
-        }       
-        div_tempo.children[0].children[0].textContent = ponerCeros(horas);
-    }        
-    if((in_minutos.value >= 0) || in_minutos.value == "")
-    {                          
-        if(in_minutos.value != "")            
-            if(in_minutos.value > 59)
-                minutos = 59;  
-            else                                     
-                minutos = in_minutos.value;           
-        div_tempo.children[0].children[1].textContent = ponerCeros(minutos);        
     }
-    if((in_segundos.value >= 0) || in_segundos.value == "")
-    {        
-        if(in_segundos.value != "")            
-            if(in_segundos.value > 59)
-                segundos = 59;  
-            else                                     
-                segundos = in_segundos.value;
-        div_tempo.children[0].children[2].textContent = ponerCeros(segundos);        
-    }    
     console.log(horas, minutos, segundos);    
 });
 

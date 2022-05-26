@@ -1,4 +1,4 @@
-body{    
+body, #botones{    
 
     display: flex;
     flex-direction: column;
@@ -6,7 +6,11 @@ body{
     align-self: center;
     align-content: center;    
 }
-
+#temporizador_visual{
+    padding: 5em;
+    padding-bottom: 8em;
+    align-content: center;    
+}
 #contenedor{
     margin: 16em;
 }
